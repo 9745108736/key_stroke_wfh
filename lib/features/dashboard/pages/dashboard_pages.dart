@@ -35,12 +35,32 @@ class _DashboardPageState extends State<DashboardPage> {
                       borderRadius: BorderRadius.circular(10),
                       color: ColorData.corporateThemeColor,
                     ),
-                    height: 20.h,
+                    height: 22.h,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(1.h),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Row(
+                            children: [
+                              MazzardTextWidget(
+                                text: "Account Balance",
+                                fontWeight: FontWeight.w300,
+                                fontSize: 13.5.sp,
+                                color: ColorData.corporateWhite,
+                              ),
+                              Spacer(),
+                              MazzardTextWidget(
+                                text: assessmentControllerObs.phoneNumber,
+                                color: ColorData.whiteF0,
+                                fontWeight: FontWeight.w100,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
                           Row(children: [
                             Icon(Icons.currency_rupee,
                                 color: ColorData.corporateWhite),
@@ -48,6 +68,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               text: "100",
                               fontSize: 30.sp,
                               fontWeight: FontWeight.w800,
+                              color: ColorData.whiteF0,
                             ),
                             const Spacer(),
                             PayButton(
@@ -66,7 +87,24 @@ class _DashboardPageState extends State<DashboardPage> {
                             color: ColorData.whiteF0,
                             fontStyle: FontStyle.italic,
                             fontSize: 9.5.sp,
-                          )
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MazzardTextWidget(
+                                text: "Today earnings",
+                                color: ColorData.whiteF0,
+                              ),
+                              MazzardTextWidget(
+                                text: "100",
+                                color: ColorData.whiteF0,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -98,7 +136,7 @@ class PayButton extends StatelessWidget {
         ),
       ),
       child: MazzardTextWidget(
-        text: 'Pay',
+        text: 'Recharge',
         fontWeight: FontWeight.w400,
         fontSize: 12.5.sp,
         color: ColorData.corporateWhite,

@@ -14,6 +14,15 @@ class PaymentController extends GetxController {
     initialiseRazorpay();
   }
 
+  String? _phoneNumber = "9745108736";
+
+  String? get phoneNumber => _phoneNumber;
+
+  set phoneNumber(String? value) {
+    _phoneNumber = value;
+    update();
+  }
+
   initialiseRazorpay() {
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);

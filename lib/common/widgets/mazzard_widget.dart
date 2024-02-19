@@ -28,7 +28,7 @@ class MazzardTextWidget extends StatelessWidget {
       this.lineHeight,
       this.textDecoration,
       this.letterSpacing,
-      this.decorationColor})
+      this.decorationColor,})
       : super(key: key);
 
   @override
