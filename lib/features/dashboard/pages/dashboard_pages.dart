@@ -1,4 +1,10 @@
+import 'package:flutter/cupertino.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:key_stroke_wfh/common/widgets/header_widgets.dart';
+import 'package:key_stroke_wfh/features/dashboard/widgets/automatic_scroll_widget.dart';
+
 import '../../../common/constents/common_imports.dart';
+import '../controller/dashboard_controller.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -10,16 +16,16 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final PaymentController assessmentControllerObs =
       Get.put(PaymentController());
+  final dashboardController = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorData.corporateWhite,
       appBar: AppBar(
           centerTitle: true,
-          title: MazzardTextWidget(
-            text: "WFH",
-            fontWeight: FontWeight.w400,
-            fontSize: 12.5.sp,
+          title: const HeaderWidget(
+            title: "Home",
           )),
       body: SafeArea(
         child: Padding(
@@ -35,9 +41,9 @@ class _DashboardPageState extends State<DashboardPage> {
                       borderRadius: BorderRadius.circular(10),
                       color: ColorData.corporateThemeColor,
                     ),
-                    height: 22.h,
+                    // height: MediaQuery.of(context).size.height * .22,
                     child: Padding(
-                      padding: EdgeInsets.all(1.h),
+                      padding: EdgeInsets.all(2.h),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +56,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 fontSize: 13.5.sp,
                                 color: ColorData.corporateWhite,
                               ),
-                              Spacer(),
+                              const Spacer(),
                               MazzardTextWidget(
                                 text: assessmentControllerObs.phoneNumber,
                                 color: ColorData.whiteF0,
@@ -64,11 +70,16 @@ class _DashboardPageState extends State<DashboardPage> {
                           Row(children: [
                             Icon(Icons.currency_rupee,
                                 color: ColorData.corporateWhite),
-                            MazzardTextWidget(
-                              text: "100",
-                              fontSize: 30.sp,
-                              fontWeight: FontWeight.w800,
-                              color: ColorData.whiteF0,
+                            Obx(
+                              () => MazzardTextWidget(
+                                text: Get.put(DashboardController())
+                                    .lastName
+                                    .value,
+                                // text: dashboardController.lastName.value ?? "",
+                                fontSize: 25.sp,
+                                fontWeight: FontWeight.w800,
+                                color: ColorData.whiteF0,
+                              ),
                             ),
                             const Spacer(),
                             PayButton(
@@ -99,7 +110,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 color: ColorData.whiteF0,
                               ),
                               MazzardTextWidget(
-                                text: "100",
+                                text: "${AppStrings.rupeesSign} 0",
                                 color: ColorData.whiteF0,
                                 fontWeight: FontWeight.w100,
                               ),
@@ -111,7 +122,34 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
               ],
-            )
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.h),
+              child: SizedBox(
+                height: 2.5.h,
+                // color: ColorData.,
+                width: 100.w,
+                child: Row(
+                  children: [
+                    Container(
+                      width: 1.w,
+                      height: double.infinity,
+                      color: ColorData.corporateThemeColor,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    MazzardTextWidget(
+                      text: "Our Recent Income Recipients",
+                      color: ColorData.corporateBlack,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.sp,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Expanded(child: MyListView())
           ]),
         ),
       ),

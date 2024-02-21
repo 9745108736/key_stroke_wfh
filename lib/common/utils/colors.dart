@@ -6,7 +6,8 @@ class ColorData {
   //wfh
 
   static Color forestgreenColor = hexColorConverter("#228B22");
-
+  static Color adminRedStatusColor = hexColorConverter("#CD0505");
+  static Color adminRedStatusColor1 = hexColorConverter("#1AFF5F49");
   static Color corporateThemeColor = hexColorConverter("#744003");
   static Color corporateWhite = hexColorConverter("#FFFFFF");
   static Color corporateBlack = hexColorConverter("#333333");

@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:key_stroke_wfh/common/constents/common_imports.dart';
 import 'package:key_stroke_wfh/features/authenticaion/controller/registration_controller.dart';
 import 'package:key_stroke_wfh/features/authenticaion/data/models/user_model.dart';
+import 'package:key_stroke_wfh/features/jobs/controller/new_job_controller.dart';
 
 import '../../../../common/widgets/alertErrorSuccesPopupWidget.dart';
 
@@ -13,6 +14,14 @@ class FirebaseService {
 
   Future<void> addUser(UserData userData) async {
     await usersCollection.add(userData.toJson());
+  }
+
+
+  final CollectionReference jobCollection =
+  FirebaseFirestore.instance.collection('activejobs');
+
+  Future<void> addjob(Job userData) async {
+    await jobCollection.add(userData.toJson());
   }
 
   Future<DocumentSnapshot?> getDocumentByPhoneNumber(String phoneNumber) async {

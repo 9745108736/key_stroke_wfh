@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:key_stroke_wfh/common/widgets/alertErrorSuccesPopupWidget.dart';
 import 'package:key_stroke_wfh/features/authenticaion/data/service/firebase_service.dart';
+import 'package:key_stroke_wfh/features/jobs/controller/new_job_controller.dart';
 
 import '../../../common/constents/common_imports.dart';
 import '../data/models/user_model.dart';
@@ -50,8 +51,39 @@ class FormController extends GetxController {
   getAllDetailWithPhoneNumber() async {
     await FirebaseService().getAllDetailWithPhoneNumber();
   }
+
   updateLastName() async {
     await FirebaseService().updateFun();
+  }
+
+  Future<void> addNewJob() async {
+    final form = formKey.currentState;
+    if (form!.validate()) {
+      isLoading.value = true;
+      try {
+        final userData = Job(
+            title: emailController.text,
+            company: firstNameController.text,
+            salary: lastNameController.text,
+            balance: phoneNumberController.text);
+        await FirebaseService().addjob(userData);
+        isLoading.value = false;
+        showSuccessMsgPopup(msg: 'User data saved successfully!');
+        // Get.snackbar(
+        //   'Success',
+        //   'User data saved successfully!',
+        //   snackPosition: SnackPosition.BOTTOM,
+        // );
+      } catch (error) {
+        isLoading.value = false;
+        showErrorMsgPopup(msg: error.toString());
+        // Get.snackbar(
+        //   'Error',
+        //   error.toString(),
+        //   snackPosition: SnackPosition.BOTTOM,
+        // );
+      }
+    }
   }
 
   Future<void> submitForm() async {
