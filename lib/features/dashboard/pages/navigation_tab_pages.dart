@@ -30,8 +30,8 @@ class _NavigationTabPagesState extends State<NavigationTabPages> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _screens = [
-      DashboardPage(),
       JobsPage(),
+      DashboardPage(),
       AddNewJobScree(),
     ];
 

@@ -73,7 +73,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             Obx(
                               () => MazzardTextWidget(
                                 text: Get.put(DashboardController())
-                                    .lastName
+                                    .accountBalance
                                     .value,
                                 // text: dashboardController.lastName.value ?? "",
                                 fontSize: 25.sp,
@@ -83,9 +83,9 @@ class _DashboardPageState extends State<DashboardPage> {
                             ),
                             const Spacer(),
                             PayButton(
-                              onPressed: () {
-                                assessmentControllerObs.openCheckout();
-                              },
+                              // onPressed: () {
+                                // assessmentControllerObs.openCheckout();
+                              // },
                             )
                           ]),
                           SizedBox(
@@ -158,14 +158,23 @@ class _DashboardPageState extends State<DashboardPage> {
 }
 
 class PayButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  // final VoidCallback onPressed;
+  final int? rechargeAmount;
 
-  const PayButton({Key? key, required this.onPressed}) : super(key: key);
+  PayButton({
+    this.rechargeAmount,
+    Key? key,
+    // required this.onPressed,
+  }) : super(key: key);
+  final PaymentController assessmentControllerObs =
+      Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: onPressed,
+      onPressed: () {
+        assessmentControllerObs.openCheckout();
+      },
       style: TextButton.styleFrom(
         backgroundColor: ColorData.forestgreenColor,
         padding: EdgeInsets.symmetric(horizontal: 2.6.w, vertical: 8),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:key_stroke_wfh/features/dashboard/controller/dashboard_controller.dart';
 
 import '../../../common/constents/common_imports.dart';
 
@@ -8,14 +10,16 @@ class JobListItem extends StatelessWidget {
   final String title;
   final String company;
   final String salary;
+  final String balance;
+
   final VoidCallback onApplyPressed;
 
-  const JobListItem({
-    required this.title,
-    required this.company,
-    required this.salary,
-    required this.onApplyPressed,
-  });
+  JobListItem(
+      {required this.title,
+      required this.company,
+      required this.salary,
+      required this.onApplyPressed,
+      required this.balance});
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +52,23 @@ class JobListItem extends StatelessWidget {
             // crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: onApplyPressed,
-                child: const Text('Apply'),
+              Obx(() {
+                return (int.parse(balance) >
+                            (int.parse(Get.put(DashboardController())
+                                .accountBalance
+                                .value))) ==
+                        true
+                    ? PayButton()
+                    : ElevatedButton(
+                        onPressed: onApplyPressed,
+                        child: const Text('Apply'),
+                      );
+              }),
+              SizedBox(
+                height: 1.h,
               ),
-              SizedBox(height: 1.h,),
               MazzardTextWidget(
-                text: "Minimum balance : 300",
+                text: "Minimum balance : $balance",
                 fontSize: 8.sp,
               )
             ],

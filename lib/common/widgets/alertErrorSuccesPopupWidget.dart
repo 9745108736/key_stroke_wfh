@@ -81,7 +81,7 @@ class CommonAlert<T> {
                           child: MazzardTextWidget(
                             text: title ?? "Delete Question",
                             textCenterAlign: true,
-                            fontSize: 3.4.sp,
+                            fontSize: 13.4.sp,
                             fontWeight: FontWeight.w600,
                             color: ColorData.corporateWhite,
                           ),
@@ -93,20 +93,19 @@ class CommonAlert<T> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Expanded(
-                            child: Column(
-                              children: [
-                                MazzardTextWidget(
-                                  // text: "Ensure that the popup description is clear, concise, and visually appealing to enhance user engagement. The ideal size for a popup description is typically limited to a few lines of text, striking a balance between providing sufficient information and avoiding overwhelming the user.",
-                                  text: message ?? "Are you sure want to delete?",
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 2.2.h,
-                                  maxLine: 5,
-                                  textCenterAlign: true,
-                                  color: HexColorConverter("#4A4A4A"),
-                                ),
-                              ],
-                            ),
+                          child: Column(
+                            children: [
+                              MazzardTextWidget(
+                                // text: "Ensure that the popup description is clear, concise, and visually appealing to enhance user engagement. The ideal size for a popup description is typically limited to a few lines of text, striking a balance between providing sufficient information and avoiding overwhelming the user.",
+                                text:
+                                    message ?? "Are you sure want to delete?",
+                                fontWeight: FontWeight.w400,
+                                fontSize: 2.2.h,
+                                maxLine: 5,
+                                textCenterAlign: true,
+                                color: HexColorConverter("#4A4A4A"),
+                              ),
+                            ],
                           ),
                         ),
                         Container(
@@ -118,7 +117,7 @@ class CommonAlert<T> {
                                         // Navigator.of(context).popUntil((route) => route
                                         //     .isFirst); // Dismiss all previous routes
                                         _isDialogShowing = false;
-            
+
                                         // Navigator.of(context).pop();
                                       },
                                   child: AlertButtonWidget(
@@ -177,7 +176,7 @@ class CommonAlert<T> {
             child: MazzardTextWidget(
                 text: btnText ?? "Yes",
                 fontWeight: FontWeight.w500,
-                fontSize: 2.9.sp,
+                fontSize: 12.9.sp,
                 color: ColorData.corporateWhite),
           ),
         ),

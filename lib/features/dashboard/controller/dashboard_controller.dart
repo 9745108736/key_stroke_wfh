@@ -5,7 +5,7 @@ import 'package:key_stroke_wfh/common/utils/common_print_util.dart';
 import '../../../common/constents/common_imports.dart';
 
 class DashboardController extends GetxController {
-  final RxString lastName = RxString('');
+  final RxString accountBalance = RxString('');
 
 // ... inside FormController
   final Stream<QuerySnapshot<Map<String, dynamic>>> userStream =
@@ -24,7 +24,7 @@ class DashboardController extends GetxController {
       if (querySnapshot.docs.isNotEmpty) {
         final documentSnapshot = querySnapshot.docs.first;
         final data = documentSnapshot.data();
-        lastName.value = data['amount'] as String;
+        accountBalance.value = data['amount'] as String;
       }
     });
   }
